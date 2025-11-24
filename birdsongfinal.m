@@ -1,5 +1,5 @@
 % Reads audio 
-[y, Fs] = audioread("/Users/avivasachs/Desktop/birdsounds.m4a");
+[y, Fs] = audioread("Cmaj7.wav");
 
 % duration of each audio segment 
 segmentLength = 80; 
@@ -33,12 +33,17 @@ for k = 1:numSegments
     Y = fft(segment); % fft
     Ymag = abs(Y) / N; % normalized
     f = (0:N-1) * (Fs/N); % frequency axis
+    
+    % limit frequency range from 20 to 10000Hz
+    freqRange = (f >= 20 & f <= 800);
+    f = f(freqRange);
+    Ymag = Ymag(freqRange);
 
     % plot positive frequencies only 
     pos = 1:floor(N/2);
 
     subplot(2, 1, 2);
-    plot(f(pos), Ymag(pos));
+    plot(f, Ymag);
     xlabel('Frequency (Hz)');
     ylabel(['FFT Magnitude: Segment ', num2str(k)]);
     grid on; 
@@ -56,6 +61,3 @@ end
 % ylabel('Amplitude (dB)');
 % title('Amplitude vs Time');
 % grid on; 
-
-
-
