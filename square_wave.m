@@ -1,24 +1,19 @@
 T = 1
 amp = 0.5
 
-
-clf; % Clear the current figure window
+clf; 
 ylim([-0.7 0.7])
 xlim([0 2])
-set(gcf, 'Color', 'w'); % Set the background color of the figure to white
-set(gca, 'XColor', 'k', 'YColor', 'k'); % Set the axis color to black
-set(gca, 'Color', 'w'); % Set the axis background color to white
-
+set(gcf, 'Color', 'w'); 
+set(gca, 'XColor', 'k', 'YColor', 'k'); 
+set(gca, 'Color', 'w'); 
 hold on
-x = 0:0.001:4*pi; % Define the range of x values
-
+x = 0:0.001:4*pi; 
 
 % square wave
-y_square = amp * square(2 * pi * x / T); % Compute the square wave of x
-hold on;              % Hold the current plot
-plot(x, y_square);    % Plot the square wave
-
-% sinwave
+y_square = amp * square(2 * pi * x / T); 
+hold on;             
+plot(x, y_square);   
 
 function y_sum = fourier_approx(k, x, amp, T)
     y_sum = zeros(size(x)); 
